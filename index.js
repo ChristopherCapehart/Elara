@@ -1,6 +1,7 @@
 // dependencies
 const express = require("express");
 const path = require("path");
+const mongoose = require("mongoose");
 
 // create app
 const app = express();
@@ -21,6 +22,13 @@ app.use("/api", apiRouter);
 
 // database setup
 const port = process.env.PORT || 3001;
+const dbString = process.env.DB_STRING;
 
-// init app
-app.listen(port, () => console.log(`Server listening on port ${port}.`));
+console.log("Connecting to database...");
+mongoose.connect(dbString)
+  .then(() => {
+    console.log("Connected to database.");
+  
+    // init app
+    app.listen(port, () => console.log(`Server listening on port ${port}.`));
+  });
