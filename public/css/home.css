@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Ubuntu;
+  color: #eeeeee;
+}
+
+/* loading animation */
+#loading-circle {
+  height: 20px;
+  width: 20px;
+  background: transparent;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-radius: 50%;
+  animation: 1s loadingButton linear infinite;
+}
+
+@keyframes loadingButton {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
