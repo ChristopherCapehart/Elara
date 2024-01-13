@@ -1,3 +1,35 @@
+// global variable
+let password;
+
+// login form
+$("#login-form").submit(e => {
+  e.preventDefault();
+
+  const loadingAnimation = new LoadingAnimation($("#login-submit"));
+  loadingAnimation.start();
+
+  fetch("/api/login", {
+    method: "POST",
+    body: JSON.stringify({
+      password: $("#login-password").val()
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json())
+  .then(response => {
+    if (response.passwordCorrect) {
+      $("#login").hide();
+    } else {
+      // password incorrect message
+    }
+
+    $("#login-password").val(null);
+    loadingAnimation.end();
+  });
+});
+
 // loading button animation
 class LoadingAnimation {
   constructor(element, size = 20, thickness = 2, color = "white") {
